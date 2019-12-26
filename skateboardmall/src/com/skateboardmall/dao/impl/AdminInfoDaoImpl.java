@@ -74,4 +74,14 @@ public class AdminInfoDaoImpl implements AdminInfoDao {
 		return null;
 	}
 
+	@Override
+	public AdminInfo findAdminInfoByNameAndPwd(String emp_name,String emp_pwd) {
+		String sql="select * from admin_info where emp_name=? and emp_pwd=?";
+		AdminInfo adminInfo=null;
+		try {
+			adminInfo=template.queryForObject(sql, new BeanPropertyRowMapper<AdminInfo>(AdminInfo.class), emp_name,emp_pwd);
+		} catch (Exception e) {}
+		return adminInfo;
+	}
+
 }
