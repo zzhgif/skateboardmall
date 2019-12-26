@@ -26,9 +26,14 @@ public class RecInfoDaoImpl implements RecInfoDao {
 	}
 
 	@Override
-	public Map<String, Object> query(String rec_id) {
+	public RecInfo query(String rec_id) {
+		RecInfo recInfo=null;
 		String sql="select * from rec_info where rec_id=?";
-		return template.queryForMap(sql, rec_id);
+		try {
+			recInfo =template.queryForObject(sql, new BeanPropertyRowMapper<RecInfo>(RecInfo.class), rec_id);
+		} catch (Exception e) {}
+		
+		return recInfo;
 	}
 
 	@Override

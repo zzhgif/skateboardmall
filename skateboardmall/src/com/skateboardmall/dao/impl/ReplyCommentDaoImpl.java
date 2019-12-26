@@ -21,15 +21,20 @@ public class ReplyCommentDaoImpl implements ReplyCommentDao{
 
 	@Override
 	public List<ReplyCommemt> querAll() {
-		String sql="selete * from replycomment";
+		String sql="select * from replycomment";
 		List<ReplyCommemt>list =template.query(sql, new BeanPropertyRowMapper<ReplyCommemt>(ReplyCommemt.class));
 		return list;
 	} 
 
 	@Override
-	public Map<String, Object> query(String rep_id) {
-		String sql="selete * from replycomment where rep_id=?";
-		return template.queryForMap(sql, rep_id);
+	public ReplyCommemt query(String rep_id) {
+		ReplyCommemt replyCommemt=null;
+		String sql="select * from replycomment where rep_id=?";
+		try {
+			replyCommemt=template.queryForObject(sql, ReplyCommemt.class, rep_id);
+		} catch (Exception e) {}
+		
+		return replyCommemt;
 	}
 
 	@Override

@@ -21,15 +21,20 @@ public class CommentsDaoImpl implements CommentsDao{
 
 	@Override
 	public List<Comments> querAll() {
-		String sql="selete * from comments";
+		String sql="select * from comments";
 		List<Comments>list =template.query(sql, new BeanPropertyRowMapper<Comments>(Comments.class));
 		return list;
 	}
 
 	@Override
-	public Map<String, Object> query(String com_id) {
+	public Comments query(String com_id) {
+		Comments comments=null;
 		String sql="select * from comments where com_id=?";
-		return template.queryForMap(sql, com_id);
+		try {
+			comments=template.queryForObject(sql, new BeanPropertyRowMapper<Comments>(Comments.class), com_id);
+		} catch (Exception e) {}
+		
+		return comments;
 	}
 
 	@Override
@@ -52,8 +57,12 @@ public class CommentsDaoImpl implements CommentsDao{
 
 	@Override
 	public String getCom_content(String com_id) {
-		String sql="selete com_content from comments where com_id=?";
-		return template.queryForObject(sql, String.class, com_id);
+		String sql="select com_content from comments where com_id=?";
+		List<String> list=template.queryForList(sql, String.class, com_id);
+		if (list.size()!=0) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 }

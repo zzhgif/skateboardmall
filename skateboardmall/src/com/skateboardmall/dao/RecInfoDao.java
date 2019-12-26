@@ -21,7 +21,7 @@ public interface RecInfoDao {
 	 * @param rec_id
 	 * @return
 	 */
-	public Map<String, Object> query(String rec_id);
+	public RecInfo query(String rec_id);
 	
 	
 	/**

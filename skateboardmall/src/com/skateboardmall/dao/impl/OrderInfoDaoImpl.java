@@ -19,15 +19,19 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
 
 	@Override
 	public List<OrderInfo> querAll() {
-		String sql="selete * from order_info";
+		String sql="select * from order_info";
 		List<OrderInfo>list =template.query(sql, new BeanPropertyRowMapper<OrderInfo>(OrderInfo.class));
 		return list;
 	}
 
 	@Override
 	public OrderInfo query(String rec_id) {
+		OrderInfo orderInfo=null;
 		String sql="select * from order_info where order_id=?";
-		return template.queryForObject(sql, OrderInfo.class, rec_id);
+		try {
+			orderInfo=template.queryForObject(sql, new BeanPropertyRowMapper<OrderInfo>(OrderInfo.class), rec_id);
+		} catch (Exception e) {}
+		return orderInfo;
 	}
 
 	@Override

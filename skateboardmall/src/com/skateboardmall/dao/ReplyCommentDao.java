@@ -19,7 +19,7 @@ public interface ReplyCommentDao {
 	 * @param rep_id
 	 * @return
 	 */
-	public Map<String, Object> query(String rep_id);
+	public ReplyCommemt query(String rep_id);
 	
 	/**
 	 * 增加一条评论信息

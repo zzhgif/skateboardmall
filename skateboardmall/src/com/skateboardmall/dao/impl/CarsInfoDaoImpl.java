@@ -19,15 +19,19 @@ public class CarsInfoDaoImpl implements CarsInfoDao {
 
 	@Override
 	public List<CarsInfo> querAll() {
-		String sql="selete * from cart_info";
+		String sql="select * from cart_info";
 		List<CarsInfo>list =template.query(sql, new BeanPropertyRowMapper<CarsInfo>(CarsInfo.class));
 		return list;
 	}
 
 	@Override
 	public CarsInfo query(String cart_id) {
+		CarsInfo carsInfo=null;
 		String sql="select * from cart_info where cart_id=?";
-		return template.queryForObject(sql, CarsInfo.class, cart_id);
+		try {
+			carsInfo=template.queryForObject(sql, new BeanPropertyRowMapper<CarsInfo>(CarsInfo.class), cart_id);
+		} catch (Exception e) {}
+		return carsInfo;
 	}
 
 	@Override

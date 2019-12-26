@@ -19,7 +19,7 @@ public interface CommentsDao {
 	 * @param com_id  
 	 * @return
 	 */
-	public Map<String, Object> query(String com_id);
+	public Comments query(String com_id);
 	
 	/**
 	 * 插入一条评论
