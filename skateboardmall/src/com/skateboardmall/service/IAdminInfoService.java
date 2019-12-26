@@ -24,21 +24,21 @@ public interface IAdminInfoService {
 	 * @param adminInfo
 	 * @return
 	 */
-	public int insertAdminInfo(AdminInfo adminInfo);
+	public boolean insertAdminInfo(AdminInfo adminInfo);
 	
 	/**
 	 * 修改指定员工编号的员工信息
 	 * @param adminInfo
 	 * @return
 	 */
-	public int alterAdminInfoById(AdminInfo adminInfo);
+	public boolean alterAdminInfoById(AdminInfo adminInfo);
 	
 	/**
 	 * 通过员工编号，删除对应的员工
 	 * @param emp_id
 	 * @return
 	 */
-	public int deleteAdminInfoById(String emp_id);
+	public boolean deleteAdminInfoById(String emp_id);
 	
 	/**
 	 * 通过员工编号获取其对应的员工姓名
