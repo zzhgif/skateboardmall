@@ -1,6 +1,7 @@
 package com.skateboardmall.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Set;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.skateboardmall.bean.AdminInfo;
 import com.skateboardmall.bean.SkiInfo;
 import com.skateboardmall.dao.SkiDao;
 import com.skateboardmall.utils.JDBCDataUtils;
@@ -32,7 +34,11 @@ public class SkiDaoImpl implements SkiDao {
 		String sql="select * from ski_info where ski_id=?";
 		return template.queryForMap(sql, ski_id);
 	}
-
+	public List<SkiInfo> querybyname(String ski_name) {
+		String sql="select * from ski_info where ski_name=?";
+		List<SkiInfo> list =template.query(sql, new BeanPropertyRowMapper<SkiInfo>(SkiInfo.class),ski_name);
+		return list;
+	}
 	public int insert(SkiInfo skiInfo) {
 		String sql="insert into ski_info values(?,?,?,?,?,?,?,?,?,?)";
 		return template.update(sql,skiInfo.getSki_id(),skiInfo.getSki_name(),skiInfo.getSki_type(),

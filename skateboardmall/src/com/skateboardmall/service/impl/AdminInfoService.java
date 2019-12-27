@@ -54,4 +54,10 @@ public class AdminInfoService implements IAdminInfoService{
 		return aDao.getEmpId(emp_name);
 	}
 
+
+	@Override
+	public AdminInfo findAdminInfoByNameAndPwd(String emp_name, String emp_pwd) {
+		return aDao.findAdminInfoByNameAndPwd(emp_name, emp_pwd);
+	}
+
 }

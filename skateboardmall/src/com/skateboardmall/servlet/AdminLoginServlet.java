@@ -8,16 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cx.bean.Users;
 import com.skateboardmall.bean.AdminInfo;
 import com.skateboardmall.service.IAdminInfoService;
-import com.skateboardmall.service.impl.AdminInfoServiceImpl;
+import com.skateboardmall.service.impl.AdminInfoService;
 
 
 @WebServlet("/AdminLoginServlet")
 public class AdminLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private IAdminInfoService adminInfoService=new AdminInfoServiceImpl();
+	private IAdminInfoService adminInfoService=new AdminInfoService();
    
     public AdminLoginServlet() {
         super();
@@ -36,20 +35,16 @@ public class AdminLoginServlet extends HttpServlet {
 		String username=request.getParameter("username");
 		String userpwd=request.getParameter("userpwd");
 		
-		AdminInfo adminInfo=
+		AdminInfo adminInfo=adminInfoService.findAdminInfoByNameAndPwd(username, userpwd);
 		
 		
-		Users users=new Users(username, userpwd);
-		//String url
-		
-		
-		if (userService.isLogin(username, userpwd)) {
+		if (adminInfo!=null) {
 			//在此处创建session对象
 			HttpSession session=request.getSession(true);
 			session.setAttribute("username", username);
-			response.sendRedirect("../afterLogin/result.jsp");
+			response.sendRedirect("static/index.html");
 		} else {
-			response.sendRedirect("Loginerror.html");
+			response.sendRedirect("static/login.html");
 		}
 		
 	}

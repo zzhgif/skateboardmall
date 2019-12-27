@@ -18,12 +18,18 @@ public interface SkiDao {
 	 * @return
 	 */
 	public Map<String, Object> query(String ski_id);
-	
+	/**
+	 * 根据商品名字，查询某一个商品信息
+	 * @param emp_id
+	 * @return
+	 */
+	public List<SkiInfo> querybyname(String ski_name);
 	/**
 	 * 插入一条商品信息
 	 * @param adminInfo
 	 * @return
 	 */
+	
 	public int insert(SkiInfo skiInfo);
 	
 	/**

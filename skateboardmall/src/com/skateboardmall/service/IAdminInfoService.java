@@ -53,4 +53,10 @@ public interface IAdminInfoService {
 	 * @return
 	 */
 	public String getAdminIdByName(String emp_name);
+	
+	/**
+	 *   查询员工姓名和员工密码是否存在对应的员工
+	 * @return
+	 */
+	public AdminInfo findAdminInfoByNameAndPwd(String emp_name,String emp_pwd);
 }

@@ -18,6 +18,10 @@ public class SkiService implements ISkiService {
 	public Map<String, Object> query(String ski_id) {
 		return null;
 	}
+	
+	public List<SkiInfo> querybyName(String ski_name) {
+		return dao.querybyname(ski_name);
+	}
 
 	public int insert(SkiInfo skiInfo) {
 		return 0;
