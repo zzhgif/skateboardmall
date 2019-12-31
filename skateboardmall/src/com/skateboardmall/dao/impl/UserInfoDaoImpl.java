@@ -32,22 +32,43 @@ public class UserInfoDaoImpl implements UserInfoDao {
 
 	public UserInfo findAllUsersByUserName(String user_name) {
 		String sql = "select * from user_info where user_name= ? ";
-		return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name);			
+		UserInfo user = null;
+		try {
+			user = template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name);			
+		} catch (Exception e) {
+	
+		}
+		return user;
 	}
 	
 	public UserInfo findAllUsersByUserPhone(String user_phone) {
 		String sql = "select * from user_info where user_phone = ?";	
-		return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_phone);
+		UserInfo user = null;
+		try {
+			return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_phone);
+		} catch (Exception e) {
+	
+		}
+		return user;
 	}
 	
 	public UserInfo queryUsersByUserNameAndUserPwd(String user_name, String user_pwd) {		
 		String sql = "select * from user_info where user_name = ? and user_pwd = ?";		
-		return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name,user_pwd);
+		UserInfo user = null;
+		try {
+			return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name,user_pwd);
+		} catch (Exception e) {	
+		}
+		return user;
 	}
 	
 	public UserInfo queryUsersByUserNameAndUserPhone(String user_name, String user_phone) {
 		String sql = "select * from user_info where user_name = ? and user_phone = ?";
-		return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name,user_phone);
+		UserInfo user = null;
+		try {
+			return template.queryForObject(sql,new BeanPropertyRowMapper<UserInfo>(UserInfo.class),user_name,user_phone);
+		} catch (Exception e) {	
+		}
+		return user;
 	}
-
 }

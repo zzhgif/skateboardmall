@@ -9,7 +9,7 @@ import com.skateboardmall.bean.UserInfo;
 
 public interface IUserInfoService {
 	
-	public int insertUsers(UserInfo users);
+	public boolean insertUsers(UserInfo users);
 	
 	public List<UserInfo> findAllUsers();
 	
@@ -20,4 +20,8 @@ public interface IUserInfoService {
 	public boolean isUserNameExit(String user_name);
 	
 	public boolean isUserPhoneExit(String user_phone);
+	
+	public boolean queryUsersByUserNameAndUserPwd(String user_name, String user_pwd);
+	
+	public boolean queryUsersByUserNameAndUserPhone(String user_name, String user_phone);
 }
