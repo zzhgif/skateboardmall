@@ -30,10 +30,15 @@ public class SkiDaoImpl implements SkiDao {
 		return list;
 	}
 
-	public Map<String, Object> query(String ski_id) {
+	public SkiInfo query(String ski_id) {
+		SkiInfo skiInfo=null;
 		String sql="select * from ski_info where ski_id=?";
-		return template.queryForMap(sql, ski_id);
+		try {
+			skiInfo=template.queryForObject(sql, new BeanPropertyRowMapper<SkiInfo>(SkiInfo.class), ski_id);
+		} catch (Exception e) {}
+		return  skiInfo;
 	}
+	
 	public List<SkiInfo> querybyname(String ski_name) {
 		String sql="select * from ski_info where ski_name=?";
 		List<SkiInfo> list =template.query(sql, new BeanPropertyRowMapper<SkiInfo>(SkiInfo.class),ski_name);

@@ -9,7 +9,7 @@ public interface IOrderInfoService {
 	public List<OrderInfo> queryAllOrderInfos();
 	
 	
-	public OrderInfo queryOneOrderInfo(String rec_id);
+	public OrderInfo queryOneOrderInfo(String order_id);
 	
 	
 	public boolean insertOrderInfo(OrderInfo orderInfo);

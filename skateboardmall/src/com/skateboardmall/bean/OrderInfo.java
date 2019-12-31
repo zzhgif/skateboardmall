@@ -1,13 +1,10 @@
 package com.skateboardmall.bean;
 
-import java.util.Date;
 //订单表			
 public class OrderInfo {
 	private	Integer order_id; //订单编号
-	private	String ski_id;//商品编号
-	private	Integer	count;//商品数量
-	private	Date order_data;//订单时间
-	private	Integer rec_id;//收货编号
+	private	String order_date;//订单时间
+	private	Integer rec_id;//收货地址编号
 	private	Integer user_id;//用户编号	
 	private Integer order_state;//订单状态
 	
@@ -15,12 +12,10 @@ public class OrderInfo {
 		super();
 	}
 
-	public OrderInfo(Integer order_id, String ski_id, Integer count, Date order_data, Integer rec_id, Integer user_id,Integer order_state) {
+	public OrderInfo(Integer order_id,  String order_date, Integer rec_id, Integer user_id,Integer order_state) {
 		super();
 		this.order_id = order_id;
-		this.ski_id = ski_id;
-		this.count = count;
-		this.order_data = order_data;
+		this.order_date = order_date;
 		this.rec_id = rec_id;
 		this.user_id = user_id;
 		this.order_state=order_state;
@@ -34,28 +29,14 @@ public class OrderInfo {
 		this.order_id = order_id;
 	}
 
-	public String getSki_id() {
-		return ski_id;
+	
+
+	public String getOrder_date() {
+		return order_date;
 	}
 
-	public void setSki_id(String ski_id) {
-		this.ski_id = ski_id;
-	}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	public Date getOrder_data() {
-		return order_data;
-	}
-
-	public void setOrder_data(Date order_data) {
-		this.order_data = order_data;
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
 	}
 
 	public Integer getRec_id() {
@@ -86,8 +67,8 @@ public class OrderInfo {
 
 	@Override
 	public String toString() {
-		return "OrderInfo [order_id=" + order_id + ", ski_id=" + ski_id + ", count=" + count + ", order_data="
-				+ order_data + ", rec_id=" + rec_id + ", user_id=" + user_id + ", order_state=" + order_state + "]";
+		return "OrderInfo [order_id=" + order_id + ", order_data=" + order_date + ", rec_id=" + rec_id + ", user_id="
+				+ user_id + ", order_state=" + order_state + "]";
 	}
 	
 }

@@ -36,14 +36,14 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
 
 	@Override
 	public int insert(OrderInfo orderInfo) {
-		String sql="insert into order_info values(null,?,?,?,?,?,?)";
-		return template.update(sql, orderInfo.getSki_id(),orderInfo.getCount(),orderInfo.getOrder_data(),orderInfo.getRec_id(),orderInfo.getUser_id(),orderInfo.getOrder_state());
+		String sql="insert into order_info values(null,?,?,?,?)";
+		return template.update(sql, orderInfo.getOrder_date(),orderInfo.getRec_id(),orderInfo.getUser_id(),orderInfo.getOrder_state());
 	}
 
 	@Override
 	public int alter(OrderInfo orderInfo) {
-		String sql="update order_info set ski_id = ?, count= ?,order_date=?,rec_id=?,user_id=?,order_state=? where order_id = ?";
-		return template.update(sql, orderInfo.getSki_id(),orderInfo.getCount(),orderInfo.getOrder_data(),orderInfo.getRec_id(),orderInfo.getUser_id(),orderInfo.getOrder_state(),orderInfo.getOrder_state());
+		String sql="update order_info set order_date=?,rec_id=?,user_id=?,order_state=? where order_id = ?";
+		return template.update(sql, orderInfo.getOrder_date(),orderInfo.getRec_id(),orderInfo.getUser_id(),orderInfo.getOrder_state(),orderInfo.getOrder_id());
 	}
 
 	@Override

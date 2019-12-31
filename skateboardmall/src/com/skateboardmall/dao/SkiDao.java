@@ -17,7 +17,7 @@ public interface SkiDao {
 	 * @param emp_id
 	 * @return
 	 */
-	public Map<String, Object> query(String ski_id);
+	public SkiInfo query(String ski_id);
 	/**
 	 * 根据商品名字，查询某一个商品信息
 	 * @param emp_id
