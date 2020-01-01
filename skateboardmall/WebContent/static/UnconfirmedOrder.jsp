@@ -278,11 +278,11 @@
               <i class="fa fa-tasks"></i>
               <span>订单管理</span>
               </a>
-             <ul class="sub">
-              <li class="active"><a href="OrdsManagement.jsp">已有订单</a></li>
-              <li><a href="UnconfirmedOrder.jsp">未确认订单</a></li>
+              <ul class="sub">
+              <li ><a href="OrdsManagement.jsp">已有订单</a></li>
+              <li class="active"><a href="UnconfirmedOrder.jsp">未确认订单</a></li>
               <li><a href="confirmedOrder.jsp">已确认订单</a></li>
-              <li ><a href="historyOrder.jsp">历史订单</a></li>
+              <li><a href="historyOrder.jsp">历史订单</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -336,7 +336,6 @@
           <div class="content-panel">
             <div class="adv-table">
 			  <table class="table table-striped table-advance table-hover" id="hidden-table-info">
-             
                 <h4><i class="fa fa-angle-right"></i></h4>
                 <hr>
                 <thead>
@@ -346,14 +345,13 @@
                     <th><i class="fa fa-bookmark"></i> 收货地址编号</th>
                     <th><i class=" fa fa-edit"></i> 用户名称</th>
                     <th><i class=" fa fa-edit"></i> 订单状态</th>
-                    <th>确认订单</th>
-                    
+                    <th>确认订单</th> 
                   </tr>
                 </thead>
                 
                 <%
                 	IOrderInfoService orderInfoService=new OrderService();
-                	List<OrderInfo> list=orderInfoService.queryAllOrderInfos();
+                	List<OrderInfo> list=orderInfoService.querAllSuitablefirmedOrder(0);
                 	request.setAttribute("list", list);
                 	
                 	
@@ -557,52 +555,6 @@
 		
 		
 		return sOut;
-      
-      //var ordslist=${ordsInfoService.queryOrdsInfos(aData[1])};
-      <%
-      		//IOrdsInfoService ordsInfoService=new OrdsInfoService();
-  			//request.setAttribute("ordsInfoService", ordsInfoService);
-  			
-  			//List<OrdsInfo> ordsInfos=ordsInfoService.queryOrdsInfos();
-      %>
-      
-      
-     
-      
-      
-      
-     /** var sOut = '<table cellpadding="5" width="500" cellspacing="0" border="0" style="padding-left:50px;">';
-      
-      
-      
-      
-      
-      sOut += '<tr>';
-      sOut += '<td align="left" colspan="4"><strong>订单详情</strong></td>';
-      sOut += '</tr>';
-      
-      
-      sOut += '<tr>';
-          sOut += '<td align="right">订单编号:</td><td align="left">' + aData[2] + ' </td>';
-          sOut += '<td align="right">订单时间:</td><td align="left">' + ${list.size()} + ' </td>';
-          sOut += '</tr>';
-	  
-     
-     
-      sOut += '<tr>';
-      sOut += '<td align="right">用户编号:</td><td align="left">' + aData[2] + ' </td>';
-      sOut += '<td align="right">用户姓名:</td><td align="left">' + aData[2] + ' </td>';
-      sOut += '</tr>';
-      sOut += '<tr>';
-      sOut += '<td align="right">收货人名称:</td><td align="left">' + aData[2] + ' </td>';
-      sOut += '<td align="right">收货人联系方式:</td><td align="left">' + aData[2] + ' </td>';
-      sOut += '</tr>';
-      sOut += '<tr>';
-      sOut += '<td align="right">收货地址:</td><td align="left" colspan="3">' + aData[2] + ' </td>';
-      sOut += '</tr>';
-      sOut += '</table>';
-
-      return sOut;*/
     }
 
     $(document).ready(function() {

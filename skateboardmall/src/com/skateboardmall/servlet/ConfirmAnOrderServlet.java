@@ -31,7 +31,7 @@ public class ConfirmAnOrderServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		String id=request.getParameter("id");
+		int id=Integer.parseInt(request.getParameter("id"));
 		
 		IOrderInfoService orderInfoService=new OrderService();
 		OrderInfo orderInfo=orderInfoService.queryOneOrderInfo(id);

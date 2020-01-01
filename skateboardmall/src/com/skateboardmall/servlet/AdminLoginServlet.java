@@ -42,7 +42,7 @@ public class AdminLoginServlet extends HttpServlet {
 			//在此处创建session对象
 			HttpSession session=request.getSession(true);
 			session.setAttribute("username", username);
-			response.sendRedirect("static/index.html");
+			response.sendRedirect("static/index.jsp");
 		} else {
 			response.sendRedirect("static/login.html");
 		}

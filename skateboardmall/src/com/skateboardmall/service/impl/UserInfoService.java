@@ -53,5 +53,9 @@ public class UserInfoService implements IUserInfoService {
 		}
 		return false;
 	}
+	@Override
+	public String getUserNameByUserId(Integer user_id) {
+		return userDao.getName(user_id);
+	}
 	
 }

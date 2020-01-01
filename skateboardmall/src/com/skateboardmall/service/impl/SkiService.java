@@ -14,9 +14,10 @@ public class SkiService implements ISkiService {
 	public List<SkiInfo> findAll() {
 		return dao.querAll();
 	}
-
-	public Map<String, Object> query(String ski_id) {
-		return null;
+	
+	
+	public SkiInfo query(String ski_id) {
+		return dao.query(ski_id);
 	}
 	
 	public List<SkiInfo> querybyName(String ski_name) {

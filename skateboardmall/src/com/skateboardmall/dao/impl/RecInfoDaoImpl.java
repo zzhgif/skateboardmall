@@ -26,7 +26,7 @@ public class RecInfoDaoImpl implements RecInfoDao {
 	}
 
 	@Override
-	public RecInfo query(String rec_id) {
+	public RecInfo query(Integer rec_id) {
 		RecInfo recInfo=null;
 		String sql="select * from rec_info where rec_id=?";
 		try {
@@ -49,7 +49,7 @@ public class RecInfoDaoImpl implements RecInfoDao {
 	}
 
 	@Override
-	public int delete(String rec_id) {
+	public int delete(Integer rec_id) {
 		String sql="delete from comments where rec_id=?";
 		return template.update(sql, rec_id);
 	}

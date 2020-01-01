@@ -20,4 +20,11 @@ public interface UserInfoDao {
 	public UserInfo queryUsersByUserNameAndUserPwd(String user_name, String user_pwd);
 	
 	public UserInfo queryUsersByUserNameAndUserPhone(String user_name, String user_phone);
+	
+	/**
+	 * 通过用户编号查询用户姓名
+	 * @param user_id
+	 * @return
+	 */
+	public String getName(Integer user_id);
 }

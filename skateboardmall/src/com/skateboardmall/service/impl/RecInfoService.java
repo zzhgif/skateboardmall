@@ -24,7 +24,7 @@ public class RecInfoService implements IRecInfoService{
 	}
 
 	@Override
-	public RecInfo queryOneRecInfo(String rec_id) {
+	public RecInfo queryOneRecInfo(Integer rec_id) {
 		return rdao.query(rec_id);
 	}
 
@@ -39,7 +39,7 @@ public class RecInfoService implements IRecInfoService{
 	}
 
 	@Override
-	public boolean deleteRecInfoById(String rec_id) {
+	public boolean deleteRecInfoById(Integer rec_id) {
 		return (rdao.delete(rec_id)>0)?true:false;
 	}
 

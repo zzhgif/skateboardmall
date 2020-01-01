@@ -25,7 +25,7 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
 	}
 
 	@Override
-	public OrderInfo query(String rec_id) {
+	public OrderInfo query(Integer rec_id) {
 		OrderInfo orderInfo=null;
 		String sql="select * from order_info where order_id=?";
 		try {
@@ -47,9 +47,16 @@ public class OrderInfoDaoImpl implements OrderInfoDao {
 	}
 
 	@Override
-	public int delete(String order_id) {
+	public int delete(Integer order_id) {
 		String sql="delete from order_info where order_id=?";
 		return template.update(sql, order_id);
+	}
+
+	@Override
+	public List<OrderInfo> querAllUnconfirmedOrder(Integer order_state) {
+		String sql="select * from order_info where order_state=?";
+		List<OrderInfo>list =template.query(sql, new BeanPropertyRowMapper<OrderInfo>(OrderInfo.class),order_state);
+		return list;
 	}
 
 }

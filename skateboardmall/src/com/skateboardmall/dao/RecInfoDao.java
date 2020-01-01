@@ -21,7 +21,7 @@ public interface RecInfoDao {
 	 * @param rec_id
 	 * @return
 	 */
-	public RecInfo query(String rec_id);
+	public RecInfo query(Integer rec_id);
 	
 	
 	/**
@@ -43,7 +43,7 @@ public interface RecInfoDao {
 	 * @param rec_id
 	 * @return
 	 */
-	public int delete(String rec_id);
+	public int delete(Integer rec_id);
 	
 	
 

@@ -223,18 +223,18 @@
 			var code_box = document.getElementById("code_box");
 			//62个字符 随机选择4位
 			var code = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM',
-				char = '';
+				chars = '';
 				result = '';
 	 
 			for (var i = 0; i < 4; i++) {
 				var code_index = Math.round(Math.random()*61);
-				var char = code[code_index];
-				if (result.toUpperCase().indexOf(char.toUpperCase()) > -1)
+				var chars = code[code_index];
+				if (result.toUpperCase().indexOf(chars.toUpperCase()) > -1)
 				{	
 					i --;
 					continue;//终止本轮循环 进行下一轮
 				}
-				result += char;
+				result += chars;
 			}
 			code_box.innerHTML = result;
 		}

@@ -9,7 +9,7 @@ public interface IOrderInfoService {
 	public List<OrderInfo> queryAllOrderInfos();
 	
 	
-	public OrderInfo queryOneOrderInfo(String order_id);
+	public OrderInfo queryOneOrderInfo(Integer order_id);
 	
 	
 	public boolean insertOrderInfo(OrderInfo orderInfo);
@@ -18,5 +18,12 @@ public interface IOrderInfoService {
 	public boolean alterOrderInfo(OrderInfo orderInfo);
 	
 	
-	public boolean deleteOrderInfo(String order_id);
+	public boolean deleteOrderInfo(Integer order_id);
+	
+	/**
+	 * 查询出所有的相应状态的订单
+	 * @param order_state
+	 * @return
+	 */
+	public List<OrderInfo> querAllSuitablefirmedOrder(Integer order_state);
 }

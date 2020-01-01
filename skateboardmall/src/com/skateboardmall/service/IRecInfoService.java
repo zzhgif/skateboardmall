@@ -10,7 +10,7 @@ public interface IRecInfoService {
 	public List<RecInfo> queryAllreRecInfos();
 	
 	
-	public RecInfo queryOneRecInfo(String rec_id);
+	public RecInfo queryOneRecInfo(Integer rec_id);
 	
 	
 	public boolean insertRecInfo(RecInfo recInfo);
@@ -19,6 +19,6 @@ public interface IRecInfoService {
 	public boolean alterRecInfoById(RecInfo recInfo);
 	
 	
-	public boolean deleteRecInfoById(String rec_id);
+	public boolean deleteRecInfoById(Integer rec_id);
 
 }

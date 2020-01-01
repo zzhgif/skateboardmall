@@ -269,10 +269,10 @@
               <span>订单管理</span>
               </a>
             <ul class="sub">
-              <li><a href="OrdsManagement.jsp">已有订单</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
+              <li ><a href="OrdsManagement.jsp">已有订单</a></li>
+              <li><a href="UnconfirmedOrder.jsp">未确认订单</a></li>
+              <li><a href="confirmedOrder.jsp">已确认订单</a></li>
+              <li><a href="historyOrder.jsp">历史订单</a></li>
             </ul>
           </li>
           <li class="sub-menu">

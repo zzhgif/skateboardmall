@@ -71,4 +71,17 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		}
 		return user;
 	}
+
+
+	@Override
+	public String getName(Integer user_id) {
+		String sql="select user_name from user_info where user_id=?";
+		String user_name=null;
+		try {
+			user_name=template.queryForObject(sql, String.class, user_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return user_name;
+	}
 }

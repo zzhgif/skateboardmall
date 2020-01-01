@@ -1,34 +1,50 @@
+<%@page import="com.skateboardmall.service.impl.RecInfoService"%>
+<%@page import="com.skateboardmall.service.IRecInfoService"%>
+<%@page import="com.skateboardmall.bean.OrderInfo"%>
+<%@page import="com.skateboardmall.service.impl.OrderService"%>
+<%@page import="com.skateboardmall.service.IOrderInfoService"%>
+<%@page import="com.skateboardmall.service.impl.SkiService"%>
+<%@page import="com.skateboardmall.service.ISkiService"%>
+<%@page import="com.skateboardmall.bean.OrdsInfo"%>
+<%@page import="com.skateboardmall.service.impl.OrdsInfoService"%>
+<%@page import="com.skateboardmall.service.IOrdsInfoService"%>
+<%@page import="com.skateboardmall.bean.UserInfo"%>
+<%@page import="java.util.List"%>
+<%@page import="com.skateboardmall.service.impl.UserInfoService"%>
+<%@page import="com.skateboardmall.service.IUserInfoService"%>
+<%@page import="com.skateboardmall.service.IAdminInfoService"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
-
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link href="lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
-  <link href="lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
-  <link rel="stylesheet" href="lib/advanced-datatable/css/DT_bootstrap.css" />
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/style-responsive.css" rel="stylesheet">
-
-  
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Dashboard">
+	<meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<title>Dashio - Bootstrap Admin Template</title>
+	
+	<!-- Favicons -->
+	<link href="img/favicon.png" rel="icon">
+	<link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+	
+	<!-- Bootstrap core CSS -->
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!--external css-->
+	<link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="lib/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+	<link href="lib/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+	<link rel="stylesheet" href="lib/advanced-datatable/css/DT_bootstrap.css" />
+	<!-- Custom styles for this template -->
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/style-responsive.css" rel="stylesheet">
+	<title>Insert title here</title>
 </head>
-
 <body>
-  <section id="container">
+	<section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -227,7 +243,7 @@
       </div>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="../AdminLogoutServlet">退出系统</a></li>
         </ul>
       </div>
     </header>
@@ -249,24 +265,24 @@
               </a>
           </li>
           <li class="sub-menu">
-            <a class="active" href="javascript:;">
+            <a  href="javascript:;">
               <i class="fa fa-book"></i>
               <span>客户管理</span>
               </a>
             <ul class="sub">
-              <li class="active"><a href="customerManagement.html">客户管理</a></li>
+              <li ><a href="customerManagement.jsp">客户管理</a></li>
             </ul>
           </li>
           <li class="sub-menu">
-            <a  href="javascript:;">
+            <a class="active"  href="javascript:;">
               <i class="fa fa-tasks"></i>
               <span>订单管理</span>
               </a>
             <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
+              <li ><a href="OrdsManagement.jsp">已有订单</a></li>
+              <li><a href="UnconfirmedOrder.jsp">未确认订单</a></li>
+              <li><a href="confirmedOrder.jsp">已确认订单</a></li>
+              <li class="active"><a href="historyOrder.jsp">历史订单</a></li>
             </ul>
           </li>
           <li class="sub-menu">
@@ -313,7 +329,7 @@
     <!--main content start-->
     <section id="main-content">
       <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Advanced Table Example</h3>
+        <h3><i class="fa fa-angle-right"></i> 订单管理</h3>
         <div class="row mb">
           <!-- page start-->
 		  <div class="col-md-12">
@@ -321,195 +337,74 @@
             <div class="adv-table">
 			  <table class="table table-striped table-advance table-hover" id="hidden-table-info">
              
-                <h4><i class="fa fa-angle-right"></i> Advanced Table</h4>
+                <h4><i class="fa fa-angle-right"></i></h4>
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-bullhorn"></i> Company</th>
-                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descrition</th>
-                    <th><i class="fa fa-bookmark"></i> Profit</th>
-                    <th><i class=" fa fa-edit"></i> Status</th>
-                    <th></th>
+                    <th><i class="fa fa-bullhorn"></i>订单编号</th>
+                    <th class="hidden-phone"><i class="fa fa-question-circle"></i> 订单时间</th>
+                    <th><i class="fa fa-bookmark"></i> 收货地址编号</th>
+                    <th><i class=" fa fa-edit"></i> 用户名称</th>
+                    <th><i class=" fa fa-edit"></i> 订单状态</th>
+                    <th>确认订单</th>
+                    
                   </tr>
                 </thead>
+                
+                <%
+                	IOrderInfoService orderInfoService=new OrderService();
+                	List<OrderInfo> list=orderInfoService.querAllSuitablefirmedOrder(3);
+                	request.setAttribute("list", list);
+                	
+                	
+                	
+                	
+                	IUserInfoService userInfoService=new UserInfoService();
+                	pageContext.setAttribute("userInfoService", userInfoService);
+                	//userInfoService.getUserNameByUserId(user_id)
+                	
+                	
+
+                %>
+                
                 <tbody>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Company Ltd</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12000.00$ </td>
-                    <td><span class="label label-info label-mini">Due</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td>
-                      <a href="basic_table.html#">
-                        Another Co
-                        </a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>14400.00$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Dashio ext</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>22000.50$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Total Ltd</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12120.00$ </td>
-                    <td><span class="label label-warning label-mini">Due</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td>
-                      <a href="basic_table.html#">
-                        Another Co
-                        </a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>14400.00$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Dashio ext</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>22000.50$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Total Ltd</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12120.00$ </td>
-                    <td><span class="label label-warning label-mini">Due</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td>
-                      <a href="basic_table.html#">
-                        Another Co
-                        </a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>14400.00$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Dashio ext</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>22000.50$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Total Ltd</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12120.00$ </td>
-                    <td><span class="label label-warning label-mini">Due</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                   <tr>
-                    <td>
-                      <a href="basic_table.html#">
-                        Another Co
-                        </a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>14400.00$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Dashio ext</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>22000.50$ </td>
-                    <td><span class="label label-success label-mini">Paid</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <a href="basic_table.html#">Total Ltd</a>
-                    </td>
-                    <td class="hidden-phone">Lorem Ipsum dolor</td>
-                    <td>12120.00$ </td>
-                    <td><span class="label label-warning label-mini">Due</span></td>
-                    <td>
-                      <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
-                      <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                      <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
-                    </td>
-                  </tr>
+                  <c:forEach items="${list }" var="order">
+                  	  
+	                  <tr>
+	                  <form method="post" action="../ConfirmAnOrderServlet?id=${order.getOrder_id()}">
+		                <td >${order.getOrder_id()}</td>
+		                <td >${order.getOrder_date()}</td>
+		                <td>${order.getRec_id()} </td>
+		                <td>${userInfoService.getUserNameByUserId(order.getUser_id())} </td>
+		               	<c:choose>
+		               		<c:when test="${order.getOrder_state()==0}">
+		               			<td><span class="label label-info label-mini">未确认</span></td>
+		               		</c:when>
+		               		<c:when test="${order.getOrder_state()==1}">
+		               			<td><span class="label label-success label-mini">已确定</span></td>
+		               			
+		               		</c:when>
+		               		<c:otherwise>
+		               			<td><span class="label label-warning label-mini">未知</span></td>
+    						</c:otherwise>
+		               	</c:choose>
+		                
+		               <td>
+		               	  <c:if test="${order.getOrder_state()==0}">
+   							  <button class="btn btn-success btn-xs"  οnclick="this.form.submit()"><i class="fa fa-check" ></i></button>
+						  </c:if>
+						  <c:if test="${order.getOrder_state()==1}">
+   							  <button class="btn btn-success btn-xs"  οnclick="this.form.submit()" disabled="disabled"><i class="fa fa-check" ></i></button>
+						  </c:if>
+		                  <!--  <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>-->
+		                  <!--  <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>-->
+		                </td> 
+		                </form>
+	                  </tr>
+	                  
+                  </c:forEach>
+                  
+                
                 </tbody>
               </table>
             </div>
@@ -552,17 +447,18 @@
   <!--common script for all pages-->
   <script src="lib/common-scripts.js"></script>
   <!--script for this page-->
-  <script type="text/javascript">
+    <script type="text/javascript">
+  	
+  
+  
+  
     /* Formating function for row details */
     function fnFormatDetails(oTable, nTr) {
       var aData = oTable.fnGetData(nTr);
-      var sOut = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
-      sOut += '<tr><td>Rendering engine:</td><td>' + aData[1] + ' ' + aData[4] + '</td></tr>';
-      sOut += '<tr><td>Link to source:</td><td>Could provide a link here</td></tr>';
-      sOut += '<tr><td>Extra info:</td><td>And any further details here (images etc)</td></tr>';
-      sOut += '</table>';
-
-      return sOut;
+      
+      
+      
+      
     }
 
     $(document).ready(function() {
@@ -603,7 +499,7 @@
         var nTr = $(this).parents('tr')[0];
         if (oTable.fnIsOpen(nTr)) {
           /* This row is already open - close it */
-          this.src = "lib/advanced-datatable/media/images/details_open.png";
+          this.src = "lib/advanced-datatable/images/details_open.png";
           oTable.fnClose(nTr);
         } else {
           /* Open this row */
@@ -614,5 +510,4 @@
     });
   </script>
 </body>
-
 </html>

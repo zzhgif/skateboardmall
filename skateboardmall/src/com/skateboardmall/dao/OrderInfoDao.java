@@ -19,7 +19,7 @@ public interface OrderInfoDao {
 	 * @param rec_id
 	 * @return
 	 */
-	public OrderInfo query(String rec_id);
+	public OrderInfo query(Integer rec_id);
 	
 	
 	/**
@@ -41,5 +41,12 @@ public interface OrderInfoDao {
 	 * @param order_id
 	 * @return
 	 */
-	public int delete(String order_id);
+	public int delete(Integer order_id);
+	
+	/**
+	 * 查询出所有的相应状态的订单
+	 * @param order_state
+	 * @return
+	 */
+	public List<OrderInfo> querAllUnconfirmedOrder(Integer order_state);
 }

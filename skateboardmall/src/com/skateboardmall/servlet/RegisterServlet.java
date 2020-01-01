@@ -31,8 +31,8 @@ public class RegisterServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String username = request.getParameter("username").trim();
 		String password = request.getParameter("password1").trim();
-		String email = request.getParameter("email").trim();
-		String phone = request.getParameter("phone").trim();
+		String email = request.getParameter("uemail").trim();
+		String phone = request.getParameter("uphone").trim();
 		UserInfo userInfo = new UserInfo(null,username,password,phone,email);
 		IUserInfoService userInfoService = new UserInfoService();
 		

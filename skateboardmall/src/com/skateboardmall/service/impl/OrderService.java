@@ -24,7 +24,7 @@ public class OrderService implements IOrderInfoService {
 	}
 
 	@Override
-	public OrderInfo queryOneOrderInfo(String rec_id) {
+	public OrderInfo queryOneOrderInfo(Integer rec_id) {
 		return odao.query(rec_id);
 	}
 
@@ -39,8 +39,17 @@ public class OrderService implements IOrderInfoService {
 	}
 
 	@Override
-	public boolean deleteOrderInfo(String order_id) {
+	public boolean deleteOrderInfo(Integer order_id) {
 		return (odao.delete(order_id)>0)?true:false;
+	}
+
+	@Override
+	public List<OrderInfo> querAllSuitablefirmedOrder(Integer order_state) {
+		List<OrderInfo> list= odao.querAllUnconfirmedOrder(order_state);
+		if (list.size()!=0) {
+			return list;
+		}
+		return null;
 	}
 
 }

@@ -1,32 +1,31 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="Dashboard">
-  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
-
-  <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
-  <!-- Bootstrap core CSS -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!--external css-->
-  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
-  <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/style-responsive.css" rel="stylesheet">
-  <script src="lib/chart-master/Chart.js"></script>
-  
+	  <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="description" content="">
+	  <meta name="author" content="Dashboard">
+	  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	  <title>Dashio - Bootstrap Admin Template</title>
+	
+	  <!-- Favicons -->
+	  <link href="img/favicon.png" rel="icon">
+	  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+	  <!-- Bootstrap core CSS -->
+	  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	  <!--external css-->
+	  <link href="lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	  <link rel="stylesheet" type="text/css" href="css/zabuto_calendar.css">
+	  <link rel="stylesheet" type="text/css" href="lib/gritter/css/jquery.gritter.css" />
+	  <!-- Custom styles for this template -->
+	  <link href="css/style.css" rel="stylesheet">
+	  <link href="css/style-responsive.css" rel="stylesheet">
+	  <script src="lib/chart-master/Chart.js"></script>
 </head>
-
 <body>
-  <section id="container">
+	<section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
@@ -238,11 +237,15 @@
     <!--sidebar start-->
    
     <aside>
+     <%
+     	String name=(String)session.getAttribute("username");
+     	System.out.print(name);
+     %>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-          <h5 class="centered">${se}</h5>
+          <h5 id="myname" class="centered"><%=name %></h5>
           <li class="sub-menu">
             <a href="javascript:;">
               <i class="fa fa-desktop"></i>
@@ -316,17 +319,19 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-9 main-chart">
+            
+            
             <!--CUSTOM CHART START -->
             <div class="border-head">
               <h3>USER VISITS</h3>
             </div>
             <div class="custom-bar-chart">
               <ul class="y-axis">
-                <li><span>10.000</span></li>
-                <li><span>8.000</span></li>
-                <li><span>6.000</span></li>
-                <li><span>4.000</span></li>
-                <li><span>2.000</span></li>
+                <li><span>10000</span></li>
+                <li><span>8000</span></li>
+                <li><span>6000</span></li>
+                <li><span>4000</span></li>
+                <li><span>2000</span></li>
                 <li><span>0</span></li>
               </ul>
               <div class="bar">
@@ -358,7 +363,11 @@
                 <div class="value tooltips" data-original-title="7.500" data-toggle="tooltip" data-placement="top">75%</div>
               </div>
             </div>
+            
+            
             <!--custom chart end-->
+            
+            
             <div class="row mt">
               <!-- SERVER STATUS PANELS -->
               <div class="col-md-4 col-sm-4 mb">
@@ -369,11 +378,9 @@
 	               </div>
                   <canvas id="serverstatus02" height="120" width="120"></canvas> 
                   <div class="row">
-                    <div class="col-sm-6 col-xs-6 goleft">
-                      
+                    <div class="col-sm-6 col-xs-6 goleft">   
                     </div>
-                    <div class="col-sm-6 col-xs-6">
-                      
+                    <div class="col-sm-6 col-xs-6">  
                     </div>
                   </div>
                 </div>
@@ -581,9 +588,10 @@
   <script src="lib/zabuto_calendar.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
+     var empname=document.getElementById("myname").innerHTML;
       var unique_id = $.gritter.add({
         // (string | mandatory) the heading of the notification
-        title: 'Welcome to cx!',
+        title: 'Welcome to '+empname,
         // (string | mandatory) the text inside the notification
         text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
         // (string | optional) the image to display on the left
@@ -642,6 +650,4 @@
     }
   </script>
 </body>
-
 </html>
-
